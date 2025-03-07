@@ -22,6 +22,11 @@
     "configuration": {
       "title": "React Import Sorter",
       "properties": {
+        "reactImportSorter.runOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "Run React Import Sorter on file save."
+        },
         "reactImportSorter.sortingOrder": {
           "type": "array",
           "items": {

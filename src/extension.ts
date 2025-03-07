@@ -412,7 +412,17 @@ export function activate(context: vscode.ExtensionContext) {
     },
   );
 
-  context.subscriptions.push(sortHandler);
+  // File save event listener
+  const saveHandler = vscode.workspace.onDidSaveTextDocument((document) => {
+    const config = vscode.workspace.getConfiguration();
+    const runOnSave = config.get('reactImportSorter.runOnSave');
+
+    if (runOnSave) {
+      vscode.commands.executeCommand('react-import-sorter.sortReactImports');
+    }
+  });
+
+  context.subscriptions.push(sortHandler, saveHandler);
 }
 
 // This method is called when your extension is deactivated
